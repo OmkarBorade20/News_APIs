@@ -6,7 +6,7 @@ const httpRequest=require('../utility/httpCall')
 module.exports.fetchNews=async function (req)
 {
     let input=req.body;
-    let api_key=process.env.APIKEY || '167666a88b24434dafb2448f1cb05e8f'
+    let api_key=process.env.APIKEY 
 
     const today = new Date();
     // Get current month
@@ -30,7 +30,7 @@ module.exports.fetchNews=async function (req)
 module.exports.saveNews=async function (req)
 {
     let input=req.body;
-    let api_key=process.env.APIKEY || '167666a88b24434dafb2448f1cb05e8f'
+    let api_key=process.env.APIKEY 
 
     const today = new Date();
     // Get current month

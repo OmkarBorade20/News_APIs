@@ -2,11 +2,11 @@ const { MongoClient } = require('mongodb');
 
 
 // Connection URL
-const url = process.env.dburl || 'mongodb+srv://TaskManager:taks2011@cluster0.dxoxr.mongodb.net/News-Apis?authSource=admin&replicaSet=atlas-82j5fk-shard-0&readPreference=primary&ssl=true';
+const url = process.env.dburl;
 const client = new MongoClient(url);
 
 // Database Name
-const dbName =  process.env.dbname ||'News-Apis';
+const dbName =  process.env.dbname ;
 
 let Db;
 async function connect() {
