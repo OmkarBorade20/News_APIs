@@ -1,0 +1,333 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Swagger Docs -  News Aggregator APIs",
+      "description": "This is a Node Server for  News Aggregator APIs ,Fell Free to use this in your Projects.",
+      "contact": {
+        "email": "oborade7@gmail.com"
+      },
+      "license": {
+        "name": "Omkar Borade",
+        "email": "oborade7@gmail.com"
+      },
+      "version": "1.0.0"
+    },
+
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "tags": [
+    {
+      "name": "Fetch News",
+      "description": "Fetch News From https://newsapi.org"
+    },
+      {
+        "name": "CURD News",
+        "description": "Perform CURD operations on News in DataBase."
+      }
+    
+    ],
+    "paths": {
+
+      "/fetchNews": {
+        "post": {
+          "tags": [
+            "Fetch News"
+          ],
+          "summary": "Fetch all News Article from  https://newsapi.org based on topic, exactly one month old.",
+
+          "requestBody": {
+            "description": "Pass Topic on Which you want to search articles for Note : Articles will be fetched only from one month old date.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fetchnews"
+                }
+              }
+              
+            },
+            "required": true
+          },
+          "responses": {
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/res"
+                  }
+                }
+              
+              }
+          }
+
+           
+          } 
+        },
+    
+
+      "/saveNews": {
+        "post": {
+          "tags": [
+            "CURD News"
+          ],
+          "summary": "This api Fetches data from https://newsapi.org and Saves News Articles in mongoDb.",
+
+          "requestBody": {
+            "description": "Pass Topic on Which you want to search articles for Note : Articles will be fetched only from one month old date.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/fetchnews"
+                }
+              }
+              
+            },
+            "required": true
+          },
+          "responses": {
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/res"
+                  }
+                }
+              
+              }
+          }
+         
+        }
+      
+      },
+
+      "/filterNews": {
+        "post": {
+          "tags": [
+            "CURD News"
+          ],
+          "summary": "This api Fetches data from saved News and Filters Articles based on categories.",
+
+          "requestBody": {
+            "description": "Pass Topic on Which you want to search articles for also pass ASC for Ascending sort and Desc For Desc Sort.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/filternews"
+                }
+              }
+              
+            },
+            "required": true
+          },
+          "responses": {
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/res"
+                  }
+                }
+              
+              }
+          }
+         
+        }
+      
+      },
+
+      "/findAllNews": {
+        "get": {
+          "tags": [
+            "CURD News"
+          ],
+          "summary": "This api Fetches All data from saved News and Articles from Db.",
+
+          "responses": {
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/res"
+                  }
+                }
+              
+              }
+          }
+         
+        }
+      
+      },
+
+      "/updateArticle": {
+        "put": {
+          "tags": [
+            "CURD News"
+          ],
+          "summary": "This api updates data based on Object id.",
+
+          "requestBody": {
+            "description": "Pass object ids Which you want to delete.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/updatenews"
+                }
+              }
+              
+            },
+            "required": true
+          },
+          "responses": {
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/res"
+                  }
+                }
+              
+              }
+          }
+         
+        }
+      
+      },
+
+      "/deleteArticles": {
+        "delete": {
+          "tags": [
+            "CURD News"
+          ],
+          "summary": "This api deletes data based on Object ids passed.",
+
+          "requestBody": {
+            "description": "Pass object ids Which you want to delete.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deletenews"
+                }
+              }
+              
+            },
+            "required": true
+          },
+          "responses": {
+            "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/res"
+                  }
+                }
+              
+              }
+          }
+         
+        }
+      
+      }
+
+
+
+  
+      
+    },
+    "components": {
+        "schemas":{
+            "findbyquery": {
+                "type": "object",
+                "properties": {
+                  "collection": {
+                    "type": "string",
+                    "example": "Logs"
+                  },
+                  "query": {
+                    "type": "object",
+                    "example": {}
+                  }
+                },
+                "xml": {
+                  "name": "findbyquery"
+                }
+              },
+              "fetchnews": {
+                "type": "object",
+                "properties": {
+                  "Topic": {
+                    "type": "string",
+                    "example": "TataMotors"
+                  }
+                 
+                }
+          
+              },
+              "filternews": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "example": "TataMotors"
+                  },
+                  "sort": {
+                    "type": "string",
+                    "example": "Asc"
+                  }
+                 
+                }
+          
+              },
+              "deletenews": {
+                "type": "object",
+                "properties": {
+                  "ids": {
+                    "type": "Array",
+                    "example": ["65816ad6b235998b84f1f317","65816ad6b235998b84f1f318"]
+                  }
+                  
+                 
+                }
+          
+              },
+              "updatenews": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "65816ad6b235998b84f1f317"
+                  },
+                  "data":{
+                    "type": "object",
+                    "properties": 
+                    { 
+                      "author":
+                      {
+                        "type": "string",
+                      "example":"omkar"
+                    },
+                    "title":{ "type": "string",  "example": "Tata Motors : and HDFC Bank sign MoU for seamless digital financing solutions"},
+                    "description":{"type": "string",  "example":"(marketscreener.com) \n Tata Motors and HDFC Bank sign MoU for seamless digital financing solutions\n \n \n \n \n Download press kit\n \n \n \n \n \n \n Press releaseDownload\n \n \n Small Images\n 245.35 KBDownload\n \n \n ...https://www.marketscreener.com/quote/stock/TATA-MOTO…"},
+                    "url": {"type": "string",  "example":"https://www.marketscreener.com/quote/stock/TATA-MOTORS-LIMITED-46728680/news/Tata-Motors-and-HDFC-Bank-sign-MoU-for-seamless-digital-financing-solutions-45535907/"},
+                    "urlToImage":{"type": "string",  "example": "https://www.marketscreener.com/images/twitter_MS_fdnoir.png"},
+      
+                    "content": {"type": "string",  "example":"Tata Motors and HDFC Bank sign MoU for seamless digital financing solutions\r\n <ul><li>Press releaseDownload</li><li>\r\n Small Images245.35 KBDownload</li><li>\r\n Large Images4.66 MBDownload</li></ul>\r\n… [+4558 chars]"},
+                    "category": {"type": "string",  "example":"TataMotors"}}
+                   
+                  }
+                  
+                 
+                }
+          
+              },
+              
+            
+              
+              "res":{
+                "message": "Data Fetched!!",
+                "data": []
+              },
+            "req":{
+                "collection": "string",
+                "filter": {}
+            }
+        }
+   
+    }
+}
+  

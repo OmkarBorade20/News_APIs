@@ -1,0 +1,24 @@
+{
+  "name": "News-Apis",
+  "version": "1.0.0",
+  "description": "Node Server for  Wrappers News Apis using apis from https://newsapi.org created by omkar Borade",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "archiver": "^6.0.1",
+    "axios": "^1.6.2",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "^5.0.1",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "swagger-ui-express": "^4.6.0"
+  }
+}
